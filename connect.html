@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <title>Kleos Studio - Connect your YouTube channel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header class="top">
+    <a class="logo" href="./" style="text-decoration:none">K</a>
+    <div class="brand">Kleos <span>Studio</span></div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="el">Ελληνικά</button>
+      <button type="button" data-lang="en">English</button>
+    </div>
+  </header>
+
+  <!-- 1. The invite: explain, then continue to Google. -->
+  <section id="intro" hidden>
+    <h1 data-t="introTitle"></h1>
+    <p class="lead" id="hello"></p>
+    <div class="card">
+      <h2 data-t="whatTitle"></h2>
+      <ul>
+        <li data-t="what1"></li>
+        <li data-t="what2"></li>
+        <li data-t="what3"></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2 data-t="stepsTitle"></h2>
+      <ol class="steps">
+        <li data-t="step1"></li>
+        <li data-t="step2"></li>
+        <li data-t="step3"></li>
+        <li data-t="step4"></li>
+      </ol>
+    </div>
+    <p><a class="btn" id="go" href="#" data-t="go"></a></p>
+    <p class="note"><span data-t="privacyNote"></span> <a href="privacy.html" data-t="privacyLink"></a></p>
+  </section>
+
+  <!-- 2. Back from Google: show the code to send to the agency. -->
+  <section id="done" hidden>
+    <h1 class="ok" data-t="doneTitle"></h1>
+    <p class="lead" data-t="doneLead"></p>
+    <div class="code" id="code"></div>
+    <p class="row" style="margin-top:14px">
+      <button class="btn" type="button" id="copy" data-t="copy"></button>
+      <button class="btn secondary" type="button" id="share" data-t="share" hidden></button>
+      <span class="ok" id="copied" hidden data-t="copied"></span>
+    </p>
+    <p class="warn" id="scopes" hidden data-t="scopes"></p>
+    <p class="note" data-t="expires"></p>
+  </section>
+
+  <!-- 3. Google returned an error, or the link is not valid. -->
+  <section id="error" hidden>
+    <h1 class="bad" data-t="errorTitle"></h1>
+    <p class="lead" id="errorText"></p>
+    <p class="note" data-t="errorHelp"></p>
+  </section>
+
+  <!-- 4. Opened without an invite. -->
+  <section id="idle" hidden>
+    <h1 data-t="idleTitle"></h1>
+    <p class="lead" data-t="idleText"></p>
+    <p><a href="./" data-t="home"></a></p>
+  </section>
+
+  <footer>
+    <a href="privacy.html" data-t="privacyLink"></a> ·
+    <a href="https://myaccount.google.com/permissions" rel="noopener" data-t="revoke"></a>
+  </footer>
+</main>
+
+<script>
+(function () {
+  'use strict'
+  var T = {
+    el: {
+      introTitle: 'Σύνδεση του καναλιού σου YouTube',
+      helloName: 'Γεια σου {name}! Το γραφείο σου σε προσκαλεί να συνδέσεις το κανάλι σου με το Kleos Studio.',
+      hello: 'Γεια σου! Το γραφείο σου σε προσκαλεί να συνδέσεις το κανάλι σου με το Kleos Studio.',
+      whatTitle: 'Τι θα μπορεί να κάνει το γραφείο',
+      what1: 'Να βελτιώνει τίτλους, περιγραφές, tags και μικρογραφίες των βίντεο σου, μόνο μετά από έλεγχο.',
+      what2: 'Να κάνει δημόσιο ένα μη καταχωρισμένο βίντεο τη σωστή στιγμή, όταν το εγκρίνετε.',
+      what3: 'Να βλέπει τα στατιστικά του καναλιού (προβολές, χρόνο παρακολούθησης, CTR). Δεν διαγράφει ποτέ βίντεο ή σχόλια.',
+      stepsTitle: 'Τι θα κάνεις (1 λεπτό)',
+      step1: 'Πάτα «Συνέχεια με Google» και συνδέσου με τον λογαριασμό Google του καναλιού. Αν σε ρωτήσει, διάλεξε το κανάλι σου.',
+      step2: 'Αν δεις «Η Google δεν έχει επαληθεύσει αυτή την εφαρμογή», πάτα «Συνέχεια».',
+      step3: 'Στις άδειες πάτα «Επιλογή όλων» και μετά «Συνέχεια».',
+      step4: 'Θα δεις έναν κωδικό. Στείλ’ τον αμέσως στο γραφείο σου (Viber, WhatsApp ή e-mail).',
+      go: 'Συνέχεια με Google',
+      privacyNote: 'Πώς χρησιμοποιούνται τα δεδομένα:',
+      privacyLink: 'Πολιτική απορρήτου',
+      doneTitle: 'Σχεδόν έτοιμο!',
+      doneLead: 'Αντίγραψε αυτόν τον κωδικό και στείλ’ τον τώρα στο γραφείο σου:',
+      copy: 'Αντιγραφή κωδικού',
+      share: 'Αποστολή…',
+      copied: 'Αντιγράφηκε ✓',
+      scopes: 'Δεν επέτρεψες όλες τις άδειες. Άνοιξε ξανά το link της πρόσκλησης και πάτα «Επιλογή όλων».',
+      expires: 'Ο κωδικός ισχύει για λίγα λεπτά. Αν λήξει, άνοιξε ξανά το ίδιο link της πρόσκλησης.',
+      shareText: 'Ο κωδικός σύνδεσης για το Kleos Studio:',
+      errorTitle: 'Η σύνδεση δεν ολοκληρώθηκε',
+      errDenied: 'Δεν επέτρεψες την πρόσβαση.',
+      errBadLink: 'Το link της πρόσκλησης δεν είναι σωστό ή είναι ελλιπές.',
+      errOther: 'Η Google απάντησε: {error}',
+      errorHelp: 'Άνοιξε ξανά το link της πρόσκλησης, ή ζήτα από το γραφείο σου νέο link.',
+      idleTitle: 'Σύνδεση καναλιού με το Kleos Studio',
+      idleText: 'Αυτή η σελίδα ανοίγει από ένα link πρόσκλησης. Ζήτα το link από το γραφείο σου.',
+      home: 'Τι είναι το Kleos Studio',
+      revoke: 'Ανάκληση πρόσβασης'
+    },
+    en: {
+      introTitle: 'Connect your YouTube channel',
+      helloName: 'Hi {name}! Your agency invites you to connect your channel to Kleos Studio.',
+      hello: 'Hi! Your agency invites you to connect your channel to Kleos Studio.',
+      whatTitle: 'What your agency will be able to do',
+      what1: 'Improve the titles, descriptions, tags and thumbnails of your videos, always after a review.',
+      what2: 'Make an unlisted video public at the right time, when you approve it.',
+      what3: 'See the statistics of the channel (views, watch time, click-through rate). It never deletes videos or comments.',
+      stepsTitle: 'What you do (1 minute)',
+      step1: 'Click "Continue with Google" and sign in with the Google account of the channel. If Google asks, select your channel.',
+      step2: 'If you see "Google hasn’t verified this app", click "Continue".',
+      step3: 'On the permissions screen, click "Select all", then "Continue".',
+      step4: 'You will see a code. Send it to your agency at once (Viber, WhatsApp or e-mail).',
+      go: 'Continue with Google',
+      privacyNote: 'How the data is used:',
+      privacyLink: 'Privacy policy',
+      doneTitle: 'Almost done!',
+      doneLead: 'Copy this code and send it to your agency now:',
+      copy: 'Copy the code',
+      share: 'Send…',
+      copied: 'Copied ✓',
+      scopes: 'You did not allow all permissions. Open the invite link again and click "Select all".',
+      expires: 'The code works for a few minutes. If it expires, open the same invite link again.',
+      shareText: 'The connection code for Kleos Studio:',
+      errorTitle: 'The connection did not finish',
+      errDenied: 'You did not allow access.',
+      errBadLink: 'The invite link is not correct or not complete.',
+      errOther: 'Google answered: {error}',
+      errorHelp: 'Open the invite link again, or ask your agency for a new link.',
+      idleTitle: 'Connect a channel to Kleos Studio',
+      idleText: 'This page opens from an invite link. Ask your agency for the link.',
+      home: 'What Kleos Studio is',
+      revoke: 'Remove access'
+    }
+  }
+
+  var query = new URLSearchParams(location.search)
+  var hash = new URLSearchParams(location.hash.slice(1))
+  var stored = ''
+  try { stored = localStorage.getItem('kleos-lang') || '' } catch (e) {}
+  var lang = hash.get('l') || stored || ((navigator.language || '').toLowerCase().indexOf('el') === 0 ? 'el' : 'en')
+  if (!T[lang]) lang = 'en'
+  var state = { name: (hash.get('n') || '').slice(0, 80), error: '', errorKey: '' }
+
+  function t(key) { return T[lang][key] || T.en[key] || '' }
+  function show(id) {
+    ['intro', 'done', 'error', 'idle'].forEach(function (s) { document.getElementById(s).hidden = s !== id })
+  }
+  function render() {
+    document.documentElement.lang = lang
+    document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t(el.getAttribute('data-t')) })
+    document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)) })
+    document.getElementById('hello').textContent = state.name ? t('helloName').replace('{name}', state.name) : t('hello')
+    var et = state.errorKey ? t(state.errorKey) : ''
+    document.getElementById('errorText').textContent = et.replace('{error}', state.error)
+  }
+  document.querySelectorAll('.lang button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      lang = b.getAttribute('data-lang')
+      try { localStorage.setItem('kleos-lang', lang) } catch (e) {}
+      render()
+    })
+  })
+
+  function fromB64url(s) {
+    s = s.replace(/-/g, '+').replace(/_/g, '/')
+    while (s.length % 4) s += '='
+    var bin = atob(s), bytes = new Uint8Array(bin.length)
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i)
+    return new TextDecoder().decode(bytes)
+  }
+
+  var code = query.get('code'), st = query.get('state'), err = query.get('error')
+  if (code && st) {
+    // Back from Google: the code only works with the secret part that stays in
+    // the agency's Kleos Studio.
+    var text = st + '.' + code
+    document.getElementById('code').textContent = text
+    var granted = query.get('scope') || ''
+    document.getElementById('scopes').hidden = granted.indexOf('youtube.force-ssl') >= 0 && granted.indexOf('yt-analytics.readonly') >= 0
+    document.getElementById('copy').addEventListener('click', function () {
+      var ok = function () { document.getElementById('copied').hidden = false }
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(ok, function () {})
+      var r = document.createRange()
+      r.selectNodeContents(document.getElementById('code'))
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r)
+    })
+    if (navigator.share) {
+      var sh = document.getElementById('share')
+      sh.hidden = false
+      sh.addEventListener('click', function () { navigator.share({ text: t('shareText') + '\n' + text }).catch(function () {}) })
+    }
+    show('done')
+  } else if (err) {
+    state.error = err.slice(0, 120)
+    state.errorKey = err === 'access_denied' ? 'errDenied' : 'errOther'
+    show('error')
+  } else if (hash.get('g')) {
+    var target = ''
+    try {
+      var u = new URL(fromB64url(hash.get('g')))
+      if (u.origin === 'https://accounts.google.com') target = u.href
+    } catch (e) {}
+    if (target) {
+      document.getElementById('go').href = target
+      try { localStorage.setItem('kleos-lang', lang) } catch (e) {}
+      show('intro')
+    } else {
+      state.errorKey = 'errBadLink'
+      show('error')
+    }
+  } else {
+    show('idle')
+  }
+  render()
+})()
+</script>
+</body>
+</html>
