@@ -213,12 +213,39 @@
     state.error = err.slice(0, 120)
     state.errorKey = err === 'access_denied' ? 'errDenied' : 'errOther'
     show('error')
-  } else if (hash.get('g')) {
+  } else if (hash.get('g') || hash.get('c')) {
     var target = ''
-    try {
-      var u = new URL(fromB64url(hash.get('g')))
-      if (u.origin === 'https://accounts.google.com') target = u.href
-    } catch (e) {}
+    if (hash.get('c')) {
+      // Short invite: build the Google sign-in address here. The redirect is
+      // this page, the same address that Kleos Studio uses for the exchange.
+      var cid = hash.get('c'), s = hash.get('s') || '', p = hash.get('p') || ''
+      var SC = {
+        y: 'https://www.googleapis.com/auth/youtube.force-ssl',
+        a: 'https://www.googleapis.com/auth/yt-analytics.readonly',
+        r: 'https://www.googleapis.com/auth/youtube.readonly'
+      }
+      var scopes = (hash.get('sc') || 'yar').split('').map(function (k) { return SC[k] }).filter(Boolean)
+      if (/^[0-9]+-[A-Za-z0-9_-]+\.apps\.googleusercontent\.com$/.test(cid) && /^[A-Za-z0-9_-]{8,128}$/.test(s) &&
+          /^[A-Za-z0-9_-]{43}$/.test(p) && scopes.length) {
+        target = 'https://accounts.google.com/o/oauth2/v2/auth?' + new URLSearchParams({
+          client_id: cid,
+          redirect_uri: location.origin + location.pathname,
+          response_type: 'code',
+          scope: scopes.join(' '),
+          access_type: 'offline',
+          prompt: 'consent select_account',
+          include_granted_scopes: 'true',
+          state: s,
+          code_challenge: p,
+          code_challenge_method: 'S256'
+        }).toString()
+      }
+    } else {
+      try {
+        var u = new URL(fromB64url(hash.get('g')))
+        if (u.origin === 'https://accounts.google.com') target = u.href
+      } catch (e) {}
+    }
     if (target) {
       document.getElementById('go').href = target
       try { localStorage.setItem('kleos-lang', lang) } catch (e) {}
