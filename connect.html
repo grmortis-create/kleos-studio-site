@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex">
-  <title>Kleos Studio - Connect your YouTube channel</title>
+  <title>ViewForge - Connect your YouTube channel</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main>
   <header class="top">
-    <a class="logo" href="./" style="text-decoration:none">K</a>
-    <div class="brand">Kleos <span>Studio</span></div>
+    <a class="logo" href="./" style="text-decoration:none">V</a>
+    <div class="brand">View<span>Forge</span></div>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="el">Ελληνικά</button>
       <button type="button" data-lang="en">English</button>
@@ -84,8 +84,8 @@
   var T = {
     el: {
       introTitle: 'Σύνδεση του καναλιού σου YouTube',
-      helloName: 'Γεια σου {name}! Το γραφείο σου σε προσκαλεί να συνδέσεις το κανάλι σου με το Kleos Studio.',
-      hello: 'Γεια σου! Το γραφείο σου σε προσκαλεί να συνδέσεις το κανάλι σου με το Kleos Studio.',
+      helloName: 'Γεια σου {name}! Το γραφείο σου σε προσκαλεί να συνδέσεις το κανάλι σου με το ViewForge.',
+      hello: 'Γεια σου! Το γραφείο σου σε προσκαλεί να συνδέσεις το κανάλι σου με το ViewForge.',
       whatTitle: 'Τι θα μπορεί να κάνει το γραφείο',
       what1: 'Να βελτιώνει τίτλους, περιγραφές, tags και μικρογραφίες των βίντεο σου, μόνο μετά από έλεγχο.',
       what2: 'Να κάνει δημόσιο ένα μη καταχωρισμένο βίντεο τη σωστή στιγμή, όταν το εγκρίνετε.',
@@ -105,21 +105,21 @@
       copied: 'Αντιγράφηκε ✓',
       scopes: 'Δεν επέτρεψες όλες τις άδειες. Άνοιξε ξανά το link της πρόσκλησης και πάτα «Επιλογή όλων».',
       expires: 'Ο κωδικός ισχύει για λίγα λεπτά. Αν λήξει, άνοιξε ξανά το ίδιο link της πρόσκλησης.',
-      shareText: 'Ο κωδικός σύνδεσης για το Kleos Studio:',
+      shareText: 'Ο κωδικός σύνδεσης για το ViewForge:',
       errorTitle: 'Η σύνδεση δεν ολοκληρώθηκε',
       errDenied: 'Δεν επέτρεψες την πρόσβαση.',
       errBadLink: 'Το link της πρόσκλησης δεν είναι σωστό ή είναι ελλιπές.',
       errOther: 'Η Google απάντησε: {error}',
       errorHelp: 'Άνοιξε ξανά το link της πρόσκλησης, ή ζήτα από το γραφείο σου νέο link.',
-      idleTitle: 'Σύνδεση καναλιού με το Kleos Studio',
+      idleTitle: 'Σύνδεση καναλιού με το ViewForge',
       idleText: 'Αυτή η σελίδα ανοίγει από ένα link πρόσκλησης. Ζήτα το link από το γραφείο σου.',
-      home: 'Τι είναι το Kleos Studio',
+      home: 'Τι είναι το ViewForge',
       revoke: 'Ανάκληση πρόσβασης'
     },
     en: {
       introTitle: 'Connect your YouTube channel',
-      helloName: 'Hi {name}! Your agency invites you to connect your channel to Kleos Studio.',
-      hello: 'Hi! Your agency invites you to connect your channel to Kleos Studio.',
+      helloName: 'Hi {name}! Your agency invites you to connect your channel to ViewForge.',
+      hello: 'Hi! Your agency invites you to connect your channel to ViewForge.',
       whatTitle: 'What your agency will be able to do',
       what1: 'Improve the titles, descriptions, tags and thumbnails of your videos, always after a review.',
       what2: 'Make an unlisted video public at the right time, when you approve it.',
@@ -139,15 +139,15 @@
       copied: 'Copied ✓',
       scopes: 'You did not allow all permissions. Open the invite link again and click "Select all".',
       expires: 'The code works for a few minutes. If it expires, open the same invite link again.',
-      shareText: 'The connection code for Kleos Studio:',
+      shareText: 'The connection code for ViewForge:',
       errorTitle: 'The connection did not finish',
       errDenied: 'You did not allow access.',
       errBadLink: 'The invite link is not correct or not complete.',
       errOther: 'Google answered: {error}',
       errorHelp: 'Open the invite link again, or ask your agency for a new link.',
-      idleTitle: 'Connect a channel to Kleos Studio',
+      idleTitle: 'Connect a channel to ViewForge',
       idleText: 'This page opens from an invite link. Ask your agency for the link.',
-      home: 'What Kleos Studio is',
+      home: 'What ViewForge is',
       revoke: 'Remove access'
     }
   }
@@ -191,7 +191,7 @@
   var code = query.get('code'), st = query.get('state'), err = query.get('error')
   if (code && st) {
     // Back from Google: the code only works with the secret part that stays in
-    // the agency's Kleos Studio.
+    // the agency's ViewForge.
     var text = st + '.' + code
     document.getElementById('code').textContent = text
     var granted = query.get('scope') || ''
@@ -217,7 +217,7 @@
     var target = ''
     if (hash.get('c')) {
       // Short invite: build the Google sign-in address here. The redirect is
-      // this page, the same address that Kleos Studio uses for the exchange.
+      // this page, the same address that ViewForge uses for the exchange.
       var cid = hash.get('c'), s = hash.get('s') || '', p = hash.get('p') || ''
       var SC = {
         y: 'https://www.googleapis.com/auth/youtube.force-ssl',
