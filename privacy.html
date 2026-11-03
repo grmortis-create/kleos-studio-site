@@ -15,7 +15,7 @@
   </header>
 
   <h1>Privacy policy</h1>
-  <p class="note">Last updated: 30 October 2026</p>
+  <p class="note">Last updated: 3 November 2026</p>
 
   <p>
     Kleos Studio is a program that an agency installs and runs on its own computer to optimize the YouTube
@@ -41,7 +41,8 @@
     <li><b>Channel identity:</b> the channel ID and the channel name.</li>
     <li><b>Access tokens:</b> the tokens that Google gives after you allow access. Kleos Studio stores them encrypted on the agency's computer.</li>
     <li><b>Video information:</b> titles, descriptions, tags, thumbnails, links, duration, visibility (public, unlisted, private, scheduled) and public statistics of the videos of the channel.</li>
-    <li><b>YouTube Analytics reports:</b> views, watch time, average view duration, impressions, click-through rate, likes, comments, shares and subscriber changes per video and per day.</li>
+    <li><b>YouTube Analytics reports:</b> views, watch time, average view duration, audience retention, impressions, click-through rate, likes, comments, shares and subscriber changes per video and per day, and the age, gender and country of the viewers of the channel (only as totals, never as single viewers).</li>
+    <li><b>Captions:</b> when the agency asks for a retention review of a video, Kleos Studio reads the captions of that video.</li>
   </ul>
   <p>Kleos Studio does not get your Google password, your e-mail inbox, your contacts or your payment data.</p>
 
@@ -50,7 +51,10 @@
     <li>It scores the titles, thumbnails, descriptions, tags and links of your videos and shows the reasons.</li>
     <li>It prepares better versions, which the agency reviews before anything changes on YouTube.</li>
     <li>After the agency approves a change, it updates the title, description, tags or thumbnail of that video, or changes its visibility (for example from unlisted to public, or at a scheduled time).</li>
-    <li>It shows the real performance of your videos so that the agency can measure the result of each change.</li>
+    <li>It shows the real performance of your videos so that the agency can measure the result of each change, and it makes a monthly results report for you.</li>
+    <li>It shows where the viewers of a video leave, so that the agency can advise you about the next video.</li>
+    <li>It makes a media kit with the numbers and the audience of your channel, for you to give to sponsors.</li>
+    <li>It makes a page for you, for a phone or a PC, with the numbers of your channel, the alerts and the changes.</li>
   </ul>
   <p>
     Kleos Studio never deletes videos, comments or captions, and it does not post comments or rate videos.
@@ -62,14 +66,21 @@
   <p>
     To write suggestions, Kleos Studio can send the title, description, tags and thumbnail of a video (and for
     Shorts, the transcript and some frames of the video) to the AI services that the agency selects, for example
-    Anthropic Claude, OpenAI, Google Gemini or Groq. It sends only what a suggestion needs. It does not send your
-    YouTube Analytics reports or your access tokens to AI services.
+    Anthropic Claude, OpenAI, Google Gemini or Groq. It sends only what a suggestion needs.
+  </p>
+  <p>
+    The one exception for YouTube Analytics data is the retention review. Only when the agency asks for this review of
+    one video, Kleos Studio sends the retention facts of that video (the moments where the audience changes, and
+    how much) and the words spoken at those moments. It does not send other YouTube Analytics reports, and it never
+    sends your access tokens to AI services. Ask the agency not to use this review for your channel if you do not want it.
   </p>
 
   <h2>Sharing</h2>
   <p>
     Kleos Studio does not sell your data, does not use it for advertising and does not share it with other
-    parties, except the AI services above and Google itself (to read and update your channel).
+    parties, except the AI services above and Google itself (to read and update your channel). The results report, the page
+    for you and the media kit are files on the agency's computer. The agency gives them to you, and it gives a media kit to a
+    sponsor only with your OK.
     Kleos Studio's use and transfer of information received from Google APIs adheres to the
     <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>,
     including the Limited Use requirements.
@@ -78,7 +89,7 @@
   <h2>Storage and deletion</h2>
   <ul>
     <li>All data stays on the agency's computer. Tokens are stored encrypted.</li>
-    <li>Kleos Studio refreshes the stored YouTube data regularly while the channel is connected.</li>
+    <li>Kleos Studio refreshes the stored YouTube data regularly while the channel is connected. It deletes a retention review after 30 days.</li>
     <li>When the agency disconnects your channel, Kleos Studio deletes the stored tokens of the channel.</li>
     <li>Ask the agency to delete all stored data of your channel at any time. The agency deletes it from Kleos Studio.</li>
   </ul>
@@ -102,8 +113,10 @@
     Το Kleos Studio τρέχει στον υπολογιστή του γραφείου που σε προσκάλεσε. Παίρνει το όνομα και το ID του καναλιού,
     τα στοιχεία των βίντεο και τα στατιστικά YouTube Analytics. Τα κλειδιά πρόσβασης αποθηκεύονται κρυπτογραφημένα.
     Αλλαγές στο YouTube γίνονται μόνο μετά από έγκριση του γραφείου. Δεν διαγράφει ποτέ βίντεο, σχόλια ή υπότιτλους
-    και δεν πουλάει ούτε μοιράζεται δεδομένα (εκτός από τις υπηρεσίες AI για τις προτάσεις, χωρίς τα στατιστικά
-    Analytics). Ανακαλείς την πρόσβαση οποιαδήποτε στιγμή στη σελίδα
+    και δεν πουλάει ούτε μοιράζεται δεδομένα. Εξαίρεση είναι οι υπηρεσίες AI για τις προτάσεις: δεν παίρνουν στατιστικά
+    Analytics, εκτός από την ανάλυση διατήρησης κοινού ενός βίντεο, αν τη ζητήσει το γραφείο (τις στιγμές που φεύγουν οι
+    θεατές και τα λόγια εκείνη την ώρα). Το media kit δίνεται σε χορηγό μόνο με τη δική σου έγκριση.
+    Ανακαλείς την πρόσβαση οποιαδήποτε στιγμή στη σελίδα
     <a href="https://myaccount.google.com/permissions" rel="noopener">αδειών του λογαριασμού Google</a>.
   </p>
 
